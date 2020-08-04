@@ -1,8 +1,60 @@
+body {
+  font-family: 'Quicksand', sans-serif;
+}
+
+h1 {
+  margin: 5vh 0;
+  text-align: center;
+  font-weight: 500;
+  font-size: 4rem;
+  color: #9dbbf8;
+}
+
 .container {
-  max-width: 1200px;
-  min-width: 360px;
-  height: 100%;
-  padding: 5vh 5vw;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 5vh;
   margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-radius: 25px;
+  background-color: #dfe9fd;
+  -webkit-box-shadow: 8px 10px 15px 1px #9ca7b9de;
+          box-shadow: 8px 10px 15px 1px #9ca7b9de;
+}
+
+.game-status {
+  margin-bottom: 5vh;
+}
+
+.gameboard {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  -ms-grid-rows: (1fr)[3];
+      grid-template-rows: repeat(3, 1fr);
+  grid-gap: 10px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#9dbbf8), to(#b5c5da));
+  background-image: linear-gradient(#9dbbf8, #b5c5da);
+}
+
+.gameboard .game-cell {
+  height: 150px;
+  width: 150px;
+  cursor: pointer;
+  background-color: #dfe9fd;
 }
 /*# sourceMappingURL=style.css.map */
