@@ -1,17 +1,24 @@
 const GameManager = (() => {
+  let turnX = false;
+  return {
+    changeTurn(player1, player2) {
+      turnX = !turnX;
+      return turnX ? player1.getPiece() : player2.getPiece();
+    },
+  };
 })();
 
 const Gameboard = (() => {
   const gameboard = ['', '', '', '', '', '', '', '', ''];
   const winningCombinations = {
-    1: [gameboard[0], gameboard[3], gameboard[6]],
-    2: [gameboard[1], gameboard[4], gameboard[7]],
-    3: [gameboard[2], gameboard[5], gameboard[8]],
-    4: [gameboard[0], gameboard[1], gameboard[2]],
-    5: [gameboard[3], gameboard[4], gameboard[5]],
-    6: [gameboard[6], gameboard[7], gameboard[8]],
-    7: [gameboard[0], gameboard[4], gameboard[8]],
-    8: [gameboard[2], gameboard[4], gameboard[6]],
+    1: [0, 3, 6],
+    2: [1, 4, 7],
+    3: [2, 5, 8],
+    4: [0, 1, 2],
+    5: [3, 4, 5],
+    6: [6, 7, 8],
+    7: [0, 4, 8],
+    8: [2, 4, 6],
   };
   return {
     changeBoard(piece, index) {
@@ -25,6 +32,11 @@ const Gameboard = (() => {
       return gameboard;
     },
     checkWinner() {
+      const winningK = Object.keys(winningCombinations);
+      for (let i = 0; i < winningK.length; i += 1) {
+        if (winningCombinations[i + 1].every(a => gameboard[a] === 'x' || gameboard[a] === 'o')) return gameboard[i];
+      }
+      return false;
     },
   };
 })();
@@ -47,7 +59,15 @@ function render(gameboard) {
   }
 }
 
-console.log(Gameboard.changeBoard('x', 2));
-console.log(Gameboard.changeBoard('o', 4));
-console.log(Gameboard.changeBoard('o', 2));
+let player1 = Player('Bob', 'x');
+let player2 = Player('Paul', 'o');
+
 render(Gameboard.displayBoard());
+
+Gameboard.changeBoard(GameManager.changeTurn(player1, player2), 0);
+Gameboard.changeBoard(GameManager.changeTurn(player1, player2), 2);
+Gameboard.changeBoard(GameManager.changeTurn(player1, player2), 3);
+Gameboard.changeBoard(GameManager.changeTurn(player1, player2), 8);
+Gameboard.changeBoard(GameManager.changeTurn(player1, player2), 6);
+console.log(Gameboard.displayBoard());
+console.log(Gameboard.checkWinner());
