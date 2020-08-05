@@ -20,7 +20,7 @@ h1 {
   flex-direction: column;
   border-radius: 25px;
   background-color: #dfe9fd;
-  box-shadow: 8px 10px 15px 1px #9ca7b9de;
+  box-shadow: 6px 8px 14px 1px #9ca7b9ab;
 }
 
 .game-status {
@@ -34,7 +34,7 @@ h1 {
   grid-gap: 10px;
   background-image: linear-gradient(#9dbbf8, #b5c5da);
 
-  .game-cell {
+  .board-cell {
     height: 150px;
     width: 150px;
     cursor: pointer;
