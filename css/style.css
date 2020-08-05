@@ -10,6 +10,35 @@ h1 {
   color: #9dbbf8;
 }
 
+.buttons-game {
+  margin: 2vh auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.button-custom {
+  padding: 1.5vh;
+  width: 25%;
+  border-radius: 8px;
+  border: 2px solid #9dbbf8a4;
+  color: #6890e0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.button-custom:hover {
+  color: #ffff;
+  border-color: #6890e0;
+  background-color: #9dbbf8;
+}
+
+.button-custom:focus {
+  outline: none;
+}
+
 .container {
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -17,8 +46,18 @@ h1 {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  padding: 5vh;
   margin: auto;
+}
+
+.board {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: auto;
+  padding: 5vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -37,6 +76,13 @@ h1 {
 
 .game-status {
   margin-bottom: 5vh;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .gameboard {
@@ -52,9 +98,13 @@ h1 {
 }
 
 .gameboard .board-cell {
-  height: 150px;
-  width: 150px;
-  cursor: pointer;
+  height: 120px;
+  width: 120px;
   background-color: #dfe9fd;
+  cursor: pointer;
+}
+
+.gameboard .board-cell:hover {
+  background-color: #cad9f8;
 }
 /*# sourceMappingURL=style.css.map */

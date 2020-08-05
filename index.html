@@ -4,38 +4,74 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
   <link rel="stylesheet" href="/assets/stylesheets/reset.css">
   <link rel="stylesheet" href="/css/style.css">
 
   <title>Tic Tac Toe</title>
 </head>
 
-<body>
-  <h1>Tic Tac Toe</h1>
-  <section class="players-info">
-    <div id="player-x"></div>
-    <div id="player-y"></div>
-  </section>
-  
+<body>  
   <div class="container">
-    <section class="game-status">
-      <p>STATUS</p>
-      
+    <h1>Tic Tac Toe</h1>
+    <section class="buttons-game">
+      <button class="button-custom" id="start-button" type="button">START</button>
+      <button class="button-custom" id="restart-button" type="button">RESTART</button>
     </section>
 
-    <section class="gameboard">
-      <div class="board-cell" id="cell0"></div>
-      <div class="board-cell" id="cell1"></div>
-      <div class="board-cell" id="cell2"></div>
-      <div class="board-cell" id="cell3"></div>
-      <div class="board-cell" id="cell4"></div>
-      <div class="board-cell" id="cell5"></div>
-      <div class="board-cell" id="cell6"></div>
-      <div class="board-cell" id="cell7"></div>
-      <div class="board-cell" id="cell8"></div>
-    </section>
+    <div class="board">
+      <section class="game-status">
+        <p class="player1"></p>
+        <p class="player2"></p>
+      </section>
+  
+      <section class="gameboard">
+        <div class="board-cell" id="cell0"></div>
+        <div class="board-cell" id="cell1"></div>
+        <div class="board-cell" id="cell2"></div>
+        <div class="board-cell" id="cell3"></div>
+        <div class="board-cell" id="cell4"></div>
+        <div class="board-cell" id="cell5"></div>
+        <div class="board-cell" id="cell6"></div>
+        <div class="board-cell" id="cell7"></div>
+        <div class="board-cell" id="cell8"></div>
+      </section>
+    </div>    
+  </div>
+
+  <div class="ui mini modal">
+    <div class="header">Add Players' Names</div>
+    <div class="content">
+      <form class="ui form" id="form">
+
+        <div class="ui error message"></div>
+
+        <div class="field">
+          <label for="read">Player One</label>
+          <div class="ui left icon input">
+            <input class="values" type="text" id="player1-name" name="author" placeholder="name" minlength="2" maxlength="30" required>
+            <i class="user icon"></i>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="read">Player Two</label>
+          <div class="ui left icon input">
+            <input class="values" type="text" id="player2-name" name="author" placeholder="name" minlength="2" maxlength="30" required>
+            <i class="user icon"></i>
+          </div>
+        </div>
+        
+        <div class="actions">
+          <button class="ui negative basic button" id="cancelBtn" type="button">CANCEL</button>
+          <button class="ui positive basic button submit" id='submitBtn' type="button">SUBMIT</button>
+        </div>
+      </form>
+    </div>
   </div>
 
   <script src="/assets/js/main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script> 
 </body>
 </html>
