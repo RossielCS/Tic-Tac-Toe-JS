@@ -1,13 +1,24 @@
 const GameManager = (() => {
   let turnX = false;
+  const playersList = Array(2);
   return {
     changeTurn(player1, player2) {
       turnX = !turnX;
       return turnX ? player1.getPiece() : player2.getPiece();
     },
+    restartTurn() {
+      turnX = false;
+    },
     endGame(gameboard) {
       const checked = !gameboard.some(x => x === '');
       return checked;
+    },
+    addPlayers(player1, player2) {
+      playersList[0] = player1;
+      playersList[1] = player2;
+    },
+    getPlayers() {
+      return playersList;
     },
   };
 })();
@@ -37,11 +48,18 @@ const Gameboard = (() => {
     },
     clearBoard() {
       gameboard.fill('');
+      const board = document.querySelectorAll('.board-cell');
+      for (let i = 0; i < gameboard.length; i += 1) {
+        board[i].style.backgroundImage = 'none';
+      }
     },
-    checkWinner() {
+    checkWinner(playersList, piece) {
       const winningK = Object.keys(winningCombinations);
       for (let i = 0; i < winningK.length; i += 1) {
-        if (winningCombinations[i + 1].every(a => gameboard[a] === 'x' || gameboard[a] === 'o')) return gameboard[i];
+        if (winningCombinations[i + 1].every(a => gameboard[a] === piece)) {
+          const winner = playersList.find(x => x.getPiece() === piece);
+          return winner;
+        }
       }
       return false;
     },
@@ -62,22 +80,10 @@ const Player = (name, piece, score = 0) => {
   };
 };
 
-const playersList = [];
-
-function createPlayers(player1, player2, playersList) {
+function createPlayers(player1, player2, game) {
   const first = Player(player1, 'x');
-  const second = Player(player2, '0');
-  playersList.push(first, second);
-}
-
-function sumPlayersWin(winner, player1, player2) {
-  if (winner) {
-    if (winner === player1.getPiece()) {
-      player1.updateScore();
-    } else {
-      player2.updateScore();
-    }
-  }
+  const second = Player(player2, 'o');
+  game.addPlayers(first, second);
 }
 
 function clearInputs() {
@@ -87,18 +93,20 @@ function clearInputs() {
   });
 }
 
-function getNames() {
+function getInputNames() {
   const player1Input = document.getElementById('player1-name').value;
-  // const player1Output = document.getElementsByClassName('player1')[0];
-  // player1Output.innerHTML = player1Input;
-
   const player2Input = document.getElementById('player2-name').value;
-  // const player2Output = document.getElementsByClassName('player2')[0];
-  // player2Output.innerHTML = player2Input;
   return [player1Input, player2Input];
 }
 
-function verifyNames(playersList) {
+function displayStatus(players) {
+  for (let i = 0; i < 2; i += 1) {
+    document.getElementsByClassName(`player${i + 1}-body`)[0].innerHTML = players[i].getName();
+    document.getElementsByClassName(`player${i + 1}-body`)[1].innerHTML = players[i].getScore();
+  }
+}
+
+function verifyNames(game) {
   // eslint-disable-next-line no-undef
   $('.ui.form').form({
     fields: {
@@ -127,76 +135,87 @@ function verifyNames(playersList) {
     },
     onSuccess(event) {
       event.preventDefault();
-      const values = getNames();
-
+      const values = getInputNames();
       if (typeof values === 'object') {
-        createPlayers(...values, playersList);
-        // eslint-disable-next-line no-undef
-        $('.mini.modal').modal('hide');
+        createPlayers(...values, game);
+        displayStatus(game.getPlayers());
+        clearInputs();
       }
     },
-  });
-}
-
-function addButtonStart() {
-  const btn = document.getElementById('start-button');
-  btn.addEventListener('click', () => {
-    // eslint-disable-next-line no-undef
-    $('.mini.modal').modal('show');
-  });
-}
-
-function addButtonRestart(gameboard) {
-  const btn = document.getElementById('restart-button');
-  btn.addEventListener('click', () => {
-    gameboard.clearBoard();
-  });
-}
-
-function cancelButton() {
-  const btn = document.getElementById('cancelBtn');
-  btn.addEventListener('click', () => {
-    clearInputs();
-    // eslint-disable-next-line no-undef
-    $('.mini.modal').modal('hide');
-  });
-}
-
-function submitButton(playersList) {
-  const btn = document.getElementById('submitBtn');
-  btn.addEventListener('click', () => {
-    verifyNames(playersList);
   });
 }
 
 function render(gameboard) {
   const board = document.querySelectorAll('.board-cell');
   for (let i = 0; i < gameboard.length; i += 1) {
-    board[i].innerHTML = gameboard[i];
+    if (gameboard[i] === 'x') {
+      board[i].style.backgroundImage = "url('assets/images/player1.png')";
+      board[i].style.backgroundRepeat = 'no-repeat';
+      board[i].style.backgroundPosition = 'center';
+    }
+    if (gameboard[i] === 'o') {
+      board[i].style.backgroundImage = "url('assets/images/player2.png')";
+      board[i].style.backgroundRepeat = 'no-repeat';
+      board[i].style.backgroundPosition = 'center';
+    }
   }
 }
 
-// const player1 = Player('Bob', 'x');
-// const player2 = Player('Paul', 'o');
+function addButtonStart() {
+  const btn = document.getElementById('start-button');
+  btn.addEventListener('click', () => {
+    // eslint-disable-next-line no-undef
+    $('.add-players').modal('show');
+  });
+}
 
-render(Gameboard.displayBoard());
+function addButtonRestart(gameboard, gamemanager) {
+  const btn = document.getElementById('restart-button');
+  btn.addEventListener('click', () => {
+    gameboard.clearBoard();
+    gamemanager.restartTurn();
+  });
+}
+
+function addPlaceMove(gameboard, gamemanager) {
+  const btn = document.querySelectorAll('.board-cell');
+  for (let i = 0; i < btn.length; i += 1) {
+    // eslint-disable-next-line no-loop-func
+    btn[i].addEventListener('click', (e) => {
+      const piece = gamemanager.changeTurn(...gamemanager.getPlayers());
+      gameboard.changeBoard(piece, e.target.id);
+      render(gameboard.displayBoard());
+      const players = gamemanager.getPlayers();
+      const winner = gameboard.checkWinner(players, piece);
+      if (winner) {
+        document.getElementsByClassName('winner-content')[0].innerHTML = `${winner.getName()} has won!`;
+        // eslint-disable-next-line no-undef
+        $('.winner').modal('show');
+        gameboard.clearBoard();
+        winner.updateScore();
+        displayStatus(players);
+        gamemanager.restartTurn();
+      }
+    });
+  }
+}
+
+function cancelButton() {
+  const btn = document.getElementById('cancelBtn');
+  btn.addEventListener('click', () => {
+    clearInputs();
+  });
+}
+
+function submitButton(game) {
+  const btn = document.getElementById('submitBtn');
+  btn.addEventListener('click', () => {
+    verifyNames(game);
+  });
+}
+
 addButtonStart();
-addButtonRestart(Gameboard);
+addButtonRestart(Gameboard, GameManager);
+addPlaceMove(Gameboard, GameManager);
 cancelButton();
-submitButton(playersList);
-
-/* Gameboard.changeBoard(GameManager.changeTurn(player1, player2), 0);
-Gameboard.changeBoard(GameManager.changeTurn(player1, player2), 2);
-Gameboard.changeBoard(GameManager.changeTurn(player1, player2), 3);
-Gameboard.changeBoard(GameManager.changeTurn(player1, player2), 8);
-Gameboard.changeBoard(GameManager.changeTurn(player1, player2), 7);
-Gameboard.changeBoard(GameManager.changeTurn(player1, player2), 1);
-Gameboard.changeBoard(GameManager.changeTurn(player1, player2), 4);
-Gameboard.changeBoard(GameManager.changeTurn(player1, player2), 5);
-Gameboard.changeBoard(GameManager.changeTurn(player1, player2), 6);
-console.log(Gameboard.displayBoard());
-console.log(GameManager.endGame(Gameboard.displayBoard()));
-sumPlayersWin(Gameboard.checkWinner(), player1, player2); */
-
-// console.log(player1.getScore());
-// Gameboard.clearBoard();
+submitButton(GameManager);

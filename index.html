@@ -21,25 +21,56 @@
 
     <div class="board">
       <section class="game-status">
-        <p class="player1"></p>
-        <p class="player2"></p>
+        <div id="player1-status">
+          <h2>First Player or "X"</h2>
+          <table class="ui very basic compact small table">            
+            <tbody >
+              <tr>
+                <td>Name</td>
+                <td class="player1-body"></td>
+              </tr>
+
+              <tr>
+                <td>Score</td>
+                <td class="player1-body"></td>
+              </tr>                
+            </tbody>
+          </table>
+        </div>
+
+        <div id="player2-status">
+          <h2>Second Player or "O"</h2>
+          <table class="ui very basic compact small table">            
+            <tbody >
+              <tr>
+                <td>Name</td>
+                <td class="player2-body"></td>
+              </tr>
+
+              <tr>
+                <td>Score</td>
+                <td class="player2-body"></td>
+              </tr>                
+            </tbody>
+          </table>
+        </div>
       </section>
   
       <section class="gameboard">
-        <div class="board-cell" id="cell0"></div>
-        <div class="board-cell" id="cell1"></div>
-        <div class="board-cell" id="cell2"></div>
-        <div class="board-cell" id="cell3"></div>
-        <div class="board-cell" id="cell4"></div>
-        <div class="board-cell" id="cell5"></div>
-        <div class="board-cell" id="cell6"></div>
-        <div class="board-cell" id="cell7"></div>
-        <div class="board-cell" id="cell8"></div>
+        <div class="board-cell" id="0"></div>
+        <div class="board-cell" id="1"></div>
+        <div class="board-cell" id="2"></div>
+        <div class="board-cell" id="3"></div>
+        <div class="board-cell" id="4"></div>
+        <div class="board-cell" id="5"></div>
+        <div class="board-cell" id="6"></div>
+        <div class="board-cell" id="7"></div>
+        <div class="board-cell" id="8"></div>
       </section>
     </div>    
   </div>
 
-  <div class="ui mini modal">
+  <div class="ui mini modal add-players">
     <div class="header">Add Players' Names</div>
     <div class="content">
       <form class="ui form" id="form">
@@ -67,6 +98,20 @@
           <button class="ui positive basic button submit" id='submitBtn' type="button">SUBMIT</button>
         </div>
       </form>
+    </div>
+  </div>
+
+  <div class="ui mini modal winner">
+    <div class="header">Congratulations</div>
+    <div class="content winner-content">      
+    </div>
+  </div>
+
+  <div class="ui mini modal end-game">
+    <div class="content end-game-content">
+    </div>
+    <div class="actions">
+      <button class="ui positive basic button submit" id='submitBtn' type="button">ACCEPT</button>
     </div>
   </div>
 
