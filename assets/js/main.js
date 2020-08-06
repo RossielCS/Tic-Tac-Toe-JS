@@ -62,6 +62,14 @@ const Player = (name, piece, score = 0) => {
   };
 };
 
+const playersList = [];
+
+function createPlayers(player1, player2, playersList) {
+  const first = Player(player1, 'x');
+  const second = Player(player2, '0');
+  playersList.push(first, second);
+}
+
 function sumPlayersWin(winner, player1, player2) {
   if (winner) {
     if (winner === player1.getPiece()) {
@@ -81,17 +89,59 @@ function clearInputs() {
 
 function getNames() {
   const player1Input = document.getElementById('player1-name').value;
-  const player1Output = document.getElementsByClassName('player1')[0];
-  player1Output.innerHTML = player1Input;
+  // const player1Output = document.getElementsByClassName('player1')[0];
+  // player1Output.innerHTML = player1Input;
 
   const player2Input = document.getElementById('player2-name').value;
-  const player2Output = document.getElementsByClassName('player2')[0];
-  player2Output.innerHTML = player2Input;
+  // const player2Output = document.getElementsByClassName('player2')[0];
+  // player2Output.innerHTML = player2Input;
+  return [player1Input, player2Input];
+}
+
+function verifyNames(playersList) {
+  // eslint-disable-next-line no-undef
+  $('.ui.form').form({
+    fields: {
+      playerone: {
+        identifier: 'player1-name',
+        rules: [
+          {
+            type: 'minLength[4]',
+            prompt: 'The name must be at least {ruleValue} characters long.',
+          },
+        ],
+      },
+      playertwo: {
+        identifier: 'player2-name',
+        rules: [
+          {
+            type: 'minLength[4]',
+            prompt: 'The name must be at least {ruleValue} characters long.',
+          },
+          {
+            type: 'different[player1-name]',
+            prompt: 'The name should be different to the player one.',
+          },
+        ],
+      },
+    },
+    onSuccess(event) {
+      event.preventDefault();
+      const values = getNames();
+
+      if (typeof values === 'object') {
+        createPlayers(...values, playersList);
+        // eslint-disable-next-line no-undef
+        $('.mini.modal').modal('hide');
+      }
+    },
+  });
 }
 
 function addButtonStart() {
   const btn = document.getElementById('start-button');
   btn.addEventListener('click', () => {
+    // eslint-disable-next-line no-undef
     $('.mini.modal').modal('show');
   });
 }
@@ -107,15 +157,15 @@ function cancelButton() {
   const btn = document.getElementById('cancelBtn');
   btn.addEventListener('click', () => {
     clearInputs();
+    // eslint-disable-next-line no-undef
     $('.mini.modal').modal('hide');
   });
 }
 
-function submitButton() {
+function submitButton(playersList) {
   const btn = document.getElementById('submitBtn');
   btn.addEventListener('click', () => {
-    getNames();
-    $('.mini.modal').modal('hide');
+    verifyNames(playersList);
   });
 }
 
@@ -126,14 +176,14 @@ function render(gameboard) {
   }
 }
 
-const player1 = Player('Bob', 'x');
-const player2 = Player('Paul', 'o');
+// const player1 = Player('Bob', 'x');
+// const player2 = Player('Paul', 'o');
 
 render(Gameboard.displayBoard());
 addButtonStart();
 addButtonRestart(Gameboard);
 cancelButton();
-submitButton();
+submitButton(playersList);
 
 /* Gameboard.changeBoard(GameManager.changeTurn(player1, player2), 0);
 Gameboard.changeBoard(GameManager.changeTurn(player1, player2), 2);
