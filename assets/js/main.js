@@ -1,13 +1,14 @@
 const GameManager = (() => {
-  let turnX = false;
+  let turnX = true;
   const playersList = Array(2);
   return {
     changeTurn(player1, player2) {
       turnX = !turnX;
-      return turnX ? player1.getPiece() : player2.getPiece();
+      const player = turnX ? player2 : player1;
+      return player.getPiece();
     },
     restartTurn() {
-      turnX = false;
+      turnX = true;
     },
     endGame(gameboard) {
       const checked = !gameboard.some(x => x === '');
@@ -19,6 +20,9 @@ const GameManager = (() => {
     },
     getPlayers() {
       return playersList;
+    },
+    getTurn(player1, player2) {
+      return turnX ? player1 : player2;
     },
   };
 })();
@@ -106,6 +110,11 @@ function displayStatus(players) {
   }
 }
 
+function displayTurn(game) {
+  const player = game.getTurn(...game.getPlayers());
+  document.getElementsByClassName('player-turn-content')[0].innerHTML = `${player.getName()} is your turn`;
+}
+
 function render(gameboard) {
   const board = document.querySelectorAll('.board-cell');
   for (let i = 0; i < gameboard.length; i += 1) {
@@ -144,10 +153,12 @@ function addPlaceMove(gameboard, gamemanager) {
     // eslint-disable-next-line no-loop-func
     btn[i].addEventListener('click', (e) => {
       const piece = gamemanager.changeTurn(...gamemanager.getPlayers());
+      const players = gamemanager.getPlayers();
       gameboard.changeBoard(piece, e.target.id);
       render(gameboard.displayBoard());
-      const players = gamemanager.getPlayers();
+      displayTurn(gamemanager);
       const winner = gameboard.checkWinner(players, piece);
+      const noTurnsLeft = gameboard.displayBoard().filter(x => x === '').length;
       if (winner) {
         document.getElementsByClassName('winner-content')[0].innerHTML = `${winner.getName()} has won!`;
         // eslint-disable-next-line no-undef
@@ -156,6 +167,16 @@ function addPlaceMove(gameboard, gamemanager) {
         winner.updateScore();
         displayStatus(players);
         gamemanager.restartTurn();
+        displayTurn(gamemanager);
+      } else {
+        // eslint-disable-next-line no-lonely-if
+        if (!noTurnsLeft) {
+          // eslint-disable-next-line no-undef
+          $('.end-game').modal('show');
+          gameboard.clearBoard();
+          gamemanager.restartTurn();
+          displayTurn(gamemanager);
+        }
       }
     });
   }
@@ -179,13 +200,15 @@ function submitButton(game) {
     } else {
       inputValues[1].setCustomValidity('');
       if (inputValues[0].checkValidity() && inputValues[1].checkValidity()) {
-        // event.preventDefault();
         const names = getInputNames();
+        const players = game.getPlayers();
         createPlayers(...names, game);
-        displayStatus(game.getPlayers());
+        displayStatus(players);
         clearInputs();
         // eslint-disable-next-line no-undef
         $('.mini.modal').modal('hide');
+        document.getElementsByClassName('cover-gameboard')[0].style.visibility = 'hidden';
+        displayTurn(game);
       }
     }
   });

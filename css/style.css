@@ -3,7 +3,8 @@ body {
 }
 
 h1 {
-  margin: 5vh 0;
+  padding-top: 5vh;
+  margin-bottom: 5vh;
   text-align: center;
   font-weight: 500;
   font-size: 4rem;
@@ -70,12 +71,13 @@ h1 {
           flex-direction: column;
   border-radius: 25px;
   background-color: #dfe9fd;
+  color: #6890e0;
   -webkit-box-shadow: 6px 8px 14px 1px #9ca7b9ab;
           box-shadow: 6px 8px 14px 1px #9ca7b9ab;
 }
 
 .game-status {
-  margin-bottom: 5vh;
+  margin-bottom: 2vh;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -83,6 +85,34 @@ h1 {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+.player-turn {
+  margin-bottom: 5vh;
+}
+
+.cover-gameboard {
+  position: absolute;
+  z-index: 2;
+  width: 380px;
+  height: 380px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: rgba(59, 93, 145, 0.507);
+}
+
+.cover-gameboard p {
+  text-align: center;
+  font-size: 1.3rem;
+  line-height: 1.8rem;
+  color: #f7f7f7;
 }
 
 .gameboard {

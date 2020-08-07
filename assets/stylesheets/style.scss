@@ -3,7 +3,8 @@ body {
 }
 
 h1 {
-  margin: 5vh 0;
+  padding-top: 5vh;
+  margin-bottom: 5vh;
   text-align: center;
   font-weight: 500;
   font-size: 4rem;
@@ -52,14 +53,37 @@ h1 {
   flex-direction: column;
   border-radius: 25px;
   background-color: #dfe9fd;
+  color: #6890e0;
   box-shadow: 6px 8px 14px 1px #9ca7b9ab;
 }
 
 .game-status {
-  margin-bottom: 5vh;
+  margin-bottom: 2vh;
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+
+.player-turn {
+  margin-bottom: 5vh;
+}
+
+.cover-gameboard {
+  position: absolute;
+  z-index: 2;
+  width: 380px;
+  height: 380px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(59, 93, 145, 0.507);
+
+  p {
+    text-align: center;
+    font-size: 1.3rem;
+    line-height: 1.8rem;
+    color: #f7f7f7;
+  }
 }
 
 .gameboard {

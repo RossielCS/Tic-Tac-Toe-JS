@@ -55,8 +55,15 @@
           </table>
         </div>
       </section>
-  
+
+      <section class="player-turn">
+        <p class="player-turn-content"></p>
+      </section>
+        
       <section class="gameboard">
+        <div class="cover-gameboard">
+          <p>To play, you must click on <strong>START</strong> to submit players' names.</p>
+        </div>
         <div class="board-cell" id="0"></div>
         <div class="board-cell" id="1"></div>
         <div class="board-cell" id="2"></div>
@@ -107,7 +114,9 @@
   </div>
 
   <div class="ui mini modal end-game">
+    <div class="header">Game Over</div>
     <div class="content end-game-content">
+      <p>Oh no! <br> The game has ended, and nobody won.</p>
     </div>
     <div class="actions">
       <button class="ui positive basic button submit" id='submitBtn' type="button">ACCEPT</button>
