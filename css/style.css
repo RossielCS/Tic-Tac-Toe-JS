@@ -2,6 +2,10 @@ body {
   font-family: 'Quicksand', sans-serif !important;
 }
 
+.hidden {
+  display: none;
+}
+
 h1 {
   padding-top: 5vh;
   margin-bottom: 5vh;

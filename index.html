@@ -14,6 +14,7 @@
   <div class="container">
     <h1>Tic Tac Toe</h1>
     <section class="buttons-game">
+      <h2 class="hidden">hidden</h2>
       <button class="button-custom" id="start-button" type="button">START</button>
       <button class="button-custom" id="restart-button" type="button">RESTART</button>
     </section>
@@ -56,10 +57,12 @@
       </section>
 
       <section class="player-turn">
+        <h2 class="hidden">hidden</h2>
         <p class="player-turn-content"></p>
       </section>
         
       <section class="gameboard">
+        <h2 class="hidden">hidden</h2>
         <div class="cover-gameboard">
           <p>To play, you must click on <strong>START</strong> to submit players' names.</p>
         </div>
@@ -83,7 +86,7 @@
       <form class="ui form" id="form">
         
         <div class="field">
-          <label for="read">Player One</label>          
+          <label for="player1-name">Player One</label>          
           <div class="ui left icon input">
             <input class="values" type="text" id="player1-name" name="player1-name" placeholder="name" pattern="\w{4,15}" required>
             <i class="user icon"></i>
@@ -91,7 +94,7 @@
         </div>
 
         <div class="field">
-          <label for="read">Player Two</label>
+          <label for="player2-name">Player Two</label>
           <div class="ui left icon input">
             <input class="values" type="text" id="player2-name" name="player2-name" placeholder="name" pattern="\w{4,15}" required>
             <i class="user icon"></i>
@@ -116,9 +119,6 @@
     <div class="header">Game Over</div>
     <div class="content end-game-content">
       <p>Oh no! <br> The game has ended, and nobody won.</p>
-    </div>
-    <div class="actions">
-      <button class="ui positive basic button submit" id='submitBtn' type="button">ACCEPT</button>
     </div>
   </div>
 
