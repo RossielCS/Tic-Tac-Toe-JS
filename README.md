@@ -50,7 +50,7 @@ To run the project:
 * Displays players' names and scores.
 * The user can restart the game.
 * It is not possible to place a move on a board cell that has already been taken by the other player.
-* Shows who is the winner of if there is a tie.
+* Shows who is the winner or if there is a tie.
 ## :woman:  Author
 
 **Rossiel Carranza**

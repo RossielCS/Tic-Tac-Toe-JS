@@ -1,5 +1,5 @@
 body {
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Quicksand', sans-serif !important;
 }
 
 h1 {
@@ -9,6 +9,11 @@ h1 {
   font-weight: 500;
   font-size: 4rem;
   color: #9dbbf8;
+  font-family: 'Quicksand', sans-serif;
+}
+
+h2 {
+  font-size: 1.2rem;
 }
 
 .buttons-game {
@@ -17,7 +22,7 @@ h1 {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: distribute;
-      justify-content: space-around;
+  justify-content: space-around;
 }
 
 .button-custom {
@@ -41,21 +46,13 @@ h1 {
 }
 
 .container {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   margin: auto;
 }
 
 .board {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   margin: auto;
   padding: 5vh;
@@ -63,17 +60,17 @@ h1 {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   border-radius: 25px;
   background-color: #dfe9fd;
   color: #6890e0;
   -webkit-box-shadow: 6px 8px 14px 1px #9ca7b9ab;
-          box-shadow: 6px 8px 14px 1px #9ca7b9ab;
+  box-shadow: 6px 8px 14px 1px #9ca7b9ab;
 }
 
 .game-status {
@@ -83,8 +80,8 @@ h1 {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 .player-turn {
@@ -100,11 +97,11 @@ h1 {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   background-color: rgba(59, 93, 145, 0.507);
 }
 
@@ -118,10 +115,8 @@ h1 {
 .gameboard {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[3];
-      grid-template-columns: repeat(3, 1fr);
-  -ms-grid-rows: (1fr)[3];
-      grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   grid-gap: 10px;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#9dbbf8), to(#b5c5da));
   background-image: linear-gradient(#9dbbf8, #b5c5da);
@@ -137,4 +132,3 @@ h1 {
 .gameboard .board-cell:hover {
   background-color: #cad9f8;
 }
-/*# sourceMappingURL=style.css.map */
