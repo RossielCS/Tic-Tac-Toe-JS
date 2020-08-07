@@ -152,30 +152,33 @@ function addPlaceMove(gameboard, gamemanager) {
   for (let i = 0; i < btn.length; i += 1) {
     // eslint-disable-next-line no-loop-func
     btn[i].addEventListener('click', (e) => {
-      const piece = gamemanager.changeTurn(...gamemanager.getPlayers());
       const players = gamemanager.getPlayers();
-      gameboard.changeBoard(piece, e.target.id);
-      render(gameboard.displayBoard());
-      displayTurn(gamemanager);
-      const winner = gameboard.checkWinner(players, piece);
-      const noTurnsLeft = gameboard.displayBoard().filter(x => x === '').length;
-      if (winner) {
-        document.getElementsByClassName('winner-content')[0].innerHTML = `${winner.getName()} has won!`;
-        // eslint-disable-next-line no-undef
-        $('.winner').modal('show');
-        gameboard.clearBoard();
-        winner.updateScore();
-        displayStatus(players);
-        gamemanager.restartTurn();
+      const piece = gamemanager.getTurn(...players).getPiece();
+      const change = gameboard.changeBoard(piece, e.target.id);
+      if (change) {
+        render(gameboard.displayBoard());
+        gamemanager.changeTurn(...players);
         displayTurn(gamemanager);
-      } else {
-        // eslint-disable-next-line no-lonely-if
-        if (!noTurnsLeft) {
+        const winner = gameboard.checkWinner(players, piece);
+        const turnsLeft = gameboard.displayBoard().filter(x => x === '').length;
+        if (winner) {
+          document.getElementsByClassName('winner-content')[0].innerHTML = `${winner.getName()} has won!`;
           // eslint-disable-next-line no-undef
-          $('.end-game').modal('show');
+          $('.winner').modal('show');
           gameboard.clearBoard();
+          winner.updateScore();
+          displayStatus(players);
           gamemanager.restartTurn();
           displayTurn(gamemanager);
+        } else {
+          // eslint-disable-next-line no-lonely-if
+          if (!turnsLeft) {
+            // eslint-disable-next-line no-undef
+            $('.end-game').modal('show');
+            gameboard.clearBoard();
+            gamemanager.restartTurn();
+            displayTurn(gamemanager);
+          }
         }
       }
     });
