@@ -73,14 +73,13 @@
   <div class="ui mini modal add-players">
     <div class="header">Add Players' Names</div>
     <div class="content">
+      <p id="message">The names of the players must be different from each other and have a length between 4 and 15 characters.</p><br>
       <form class="ui form" id="form">
-
-        <div class="ui error message"></div>
-
+        
         <div class="field">
-          <label for="read">Player One</label>
+          <label for="read">Player One</label>          
           <div class="ui left icon input">
-            <input class="values" type="text" id="player1-name" name="player1-name" placeholder="name">
+            <input class="values" type="text" id="player1-name" name="player1-name" placeholder="name" pattern="\w{4,15}" required>
             <i class="user icon"></i>
           </div>
         </div>
@@ -88,14 +87,14 @@
         <div class="field">
           <label for="read">Player Two</label>
           <div class="ui left icon input">
-            <input class="values" type="text" id="player2-name" name="player2-name" placeholder="name">
+            <input class="values" type="text" id="player2-name" name="player2-name" placeholder="name" pattern="\w{4,15}" required>
             <i class="user icon"></i>
           </div>
         </div>
         
         <div class="actions">
-          <button class="ui negative basic button" id="cancelBtn" type="button">CANCEL</button>
-          <button class="ui positive basic button submit" id='submitBtn' type="button">SUBMIT</button>
+          <button class="ui red basic button" id="cancelBtn" type="button">CANCEL</button>
+          <button class="ui green basic button" id='submitBtn' type="submit">SUBMIT</button>          
         </div>
       </form>
     </div>

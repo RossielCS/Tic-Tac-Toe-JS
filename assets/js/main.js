@@ -106,45 +106,6 @@ function displayStatus(players) {
   }
 }
 
-function verifyNames(game) {
-  // eslint-disable-next-line no-undef
-  $('.ui.form').form({
-    fields: {
-      playerone: {
-        identifier: 'player1-name',
-        rules: [
-          {
-            type: 'minLength[4]',
-            prompt: 'The name must be at least {ruleValue} characters long.',
-          },
-        ],
-      },
-      playertwo: {
-        identifier: 'player2-name',
-        rules: [
-          {
-            type: 'minLength[4]',
-            prompt: 'The name must be at least {ruleValue} characters long.',
-          },
-          {
-            type: 'different[player1-name]',
-            prompt: 'The name should be different to the player one.',
-          },
-        ],
-      },
-    },
-    onSuccess(event) {
-      event.preventDefault();
-      const values = getInputNames();
-      if (typeof values === 'object') {
-        createPlayers(...values, game);
-        displayStatus(game.getPlayers());
-        clearInputs();
-      }
-    },
-  });
-}
-
 function render(gameboard) {
   const board = document.querySelectorAll('.board-cell');
   for (let i = 0; i < gameboard.length; i += 1) {
@@ -204,13 +165,29 @@ function cancelButton() {
   const btn = document.getElementById('cancelBtn');
   btn.addEventListener('click', () => {
     clearInputs();
+    // eslint-disable-next-line no-undef
+    $('.mini.modal').modal('hide');
   });
 }
 
 function submitButton(game) {
   const btn = document.getElementById('submitBtn');
   btn.addEventListener('click', () => {
-    verifyNames(game);
+    const inputValues = document.getElementsByClassName('values');
+    if (inputValues[0].value.toLowerCase() === inputValues[1].value.toLowerCase()) {
+      inputValues[1].setCustomValidity('The players\' names must be different.');
+    } else {
+      inputValues[1].setCustomValidity('');
+      if (inputValues[0].checkValidity() && inputValues[1].checkValidity()) {
+        // event.preventDefault();
+        const names = getInputNames();
+        createPlayers(...names, game);
+        displayStatus(game.getPlayers());
+        clearInputs();
+        // eslint-disable-next-line no-undef
+        $('.mini.modal').modal('hide');
+      }
+    }
   });
 }
 
