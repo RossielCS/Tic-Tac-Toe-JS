@@ -144,6 +144,7 @@ function addButtonRestart(gameboard, gamemanager) {
   btn.addEventListener('click', () => {
     gameboard.clearBoard();
     gamemanager.restartTurn();
+    displayTurn(gamemanager);
   });
 }
 
