@@ -12,7 +12,7 @@ Is a game for two players, X and O, who take turns marking the spaces in a 3×3 
 
 ## Live Demo
 
-You can try it [here]().
+You can try it [here](https://rossielcs.github.io/Tic-Tac-Toe-JS/).
 
 ## :hammer:  Built With
 
