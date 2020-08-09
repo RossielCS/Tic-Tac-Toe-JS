@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+  <link rel="stylesheet" href="./css/style.css">
+
+  <title>Tic Tac Toe</title>
+</head>
+
+<body>  
+  <div class="container">
+    <h1>Tic Tac Toe</h1>
+    <section class="buttons-game">
+      <h2 class="hidden">hidden</h2>
+      <button class="button-custom" id="start-button" type="button">START</button>
+      <button class="button-custom" id="restart-button" type="button">RESTART</button>
+    </section>
+
+    <div class="board">
+      <section class="game-status">
+        <div id="player1-status">
+          <h2>First Player or "X"</h2>
+          <table class="ui very basic compact small table">            
+            <tbody >
+              <tr>
+                <td>Name</td>
+                <td class="player1-body"></td>
+              </tr>
+
+              <tr>
+                <td>Score</td>
+                <td class="player1-body"></td>
+              </tr>                
+            </tbody>
+          </table>
+        </div>
+
+        <div id="player2-status">
+          <h2>Second Player or "O"</h2>
+          <table class="ui very basic compact small table">            
+            <tbody >
+              <tr>
+                <td>Name</td>
+                <td class="player2-body"></td>
+              </tr>
+
+              <tr>
+                <td>Score</td>
+                <td class="player2-body"></td>
+              </tr>                
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="player-turn">
+        <h2 class="hidden">hidden</h2>
+        <p class="player-turn-content"></p>
+      </section>
+        
+      <section class="gameboard">
+        <h2 class="hidden">hidden</h2>
+        <div class="cover-gameboard">
+          <p>To play, you must click on <strong>START</strong> to submit players' names.</p>
+        </div>
+        <div class="board-cell" id="0"></div>
+        <div class="board-cell" id="1"></div>
+        <div class="board-cell" id="2"></div>
+        <div class="board-cell" id="3"></div>
+        <div class="board-cell" id="4"></div>
+        <div class="board-cell" id="5"></div>
+        <div class="board-cell" id="6"></div>
+        <div class="board-cell" id="7"></div>
+        <div class="board-cell" id="8"></div>
+      </section>
+    </div>    
+  </div>
+
+  <div class="ui mini modal add-players">
+    <div class="header">Add Players' Names</div>
+    <div class="content">
+      <p id="message">The names of the players must be different from each other and have a length between 4 and 15 characters.</p><br>
+      <form class="ui form" id="form">
+        
+        <div class="field">
+          <label for="player1-name">Player One</label>          
+          <div class="ui left icon input">
+            <input class="values" type="text" id="player1-name" name="player1-name" placeholder="name" pattern="\w{4,15}" required>
+            <i class="user icon"></i>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="player2-name">Player Two</label>
+          <div class="ui left icon input">
+            <input class="values" type="text" id="player2-name" name="player2-name" placeholder="name" pattern="\w{4,15}" required>
+            <i class="user icon"></i>
+          </div>
+        </div>
+        
+        <div class="actions">
+          <button class="ui red basic button" id="cancelBtn" type="button">CANCEL</button>
+          <button class="ui green basic button" id='submitBtn' type="submit">SUBMIT</button>          
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="ui mini modal winner">
+    <div class="header">Congratulations</div>
+    <div class="content winner-content">      
+    </div>
+  </div>
+
+  <div class="ui mini modal end-game">
+    <div class="header">Game Over</div>
+    <div class="content end-game-content">
+      <p>Oh no! <br> The game has ended, and nobody won.</p>
+    </div>
+  </div>
+
+  <script src="./assets/js/main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script> 
+</body>
+</html>
