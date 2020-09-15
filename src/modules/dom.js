@@ -1,4 +1,4 @@
-import { Gameboard, createPlayers } from './logic';
+import { Gameboard, Player } from './logic';
 import playerOneImg from '../assets/images/player1.png';
 import playerTwoImg from '../assets/images/player2.png';
 
@@ -127,7 +127,9 @@ const submitButton = (game) => {
       if (inputValues[0].checkValidity() && inputValues[1].checkValidity()) {
         const names = getInputNames();
         const players = game.getPlayers();
-        createPlayers(...names, game);
+        const first = Player(names[0], 'x');
+        const second = Player(names[1], 'o');
+        game.addPlayers(first, second);
         displayStatus(players);
         clearInputs();
         // eslint-disable-next-line no-undef

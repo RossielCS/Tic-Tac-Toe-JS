@@ -77,12 +77,6 @@ const Player = (name, piece, score = 0) => {
   };
 };
 
-const createPlayers = (player1, player2, game) => {
-  const first = Player(player1, 'x');
-  const second = Player(player2, 'o');
-  game.addPlayers(first, second);
-};
-
 export {
-  GameManager, Gameboard, Player, createPlayers,
+  GameManager, Gameboard, Player,
 };
