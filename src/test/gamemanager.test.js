@@ -29,7 +29,7 @@ describe('GameManager', () => {
     expect(GameManager.getPlayers()).toEqual(players);
   });
 
-  test('It should return the added players to playersList', () => {
+  test('It should return an array with the added players to playersList', () => {
     const players = [first, second];
     expect(GameManager.getPlayers()).toEqual(players);
   });

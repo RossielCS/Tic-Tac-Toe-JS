@@ -5,8 +5,6 @@ const GameManager = (() => {
     changeTurn() {
       turnX = !turnX;
       return turnX;
-      // const player = turnX ? player2 : player1;
-      // return player.getPiece();
     },
     restartTurn() {
       turnX = true;
