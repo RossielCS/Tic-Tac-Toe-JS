@@ -1,7 +1,7 @@
 {
   "name": "cls",
   "version": "1.0.0",
-  "description": "",
+  "description": "> In this project, I build a web app called 'Tic Tac Toe' based on the paper-and-pencil [game](https://en.wikipedia.org/wiki/Tic-tac-toe) of the same name.   \r Is a game for two players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner.",
   "main": "index.js",
   "dependencies": {
     "eslint": "^6.8.0",
@@ -13,7 +13,10 @@
     "stylelint-csstree-validator": "^1.8.0",
     "stylelint-scss": "^3.17.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
   "scripts": {
     "test": "nodemon ./assets/js/main.js"
   },
