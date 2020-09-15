@@ -21,6 +21,8 @@ You can try it [here](https://rossielcs.github.io/Tic-Tac-Toe-JS/).
 - Sass,
 - Stylelint,
 - Eslint,
+- Jest,
+- Webpack,
 - JavaScript,
 - Semantic-Ui,
 - Visual Studio Code
@@ -51,6 +53,17 @@ To run the project:
 * The user can restart the game.
 * It is not possible to place a move on a board cell that has already been taken by the other player.
 * Shows who is the winner or if there is a tie.
+
+## :memo: Tests
+- It contains unit tests for:
+  1. GameManager.
+  2. Gameboard.
+  3. Player.
+
+- To run the tests.   
+`npm run test`
+
+
 ## :woman:  Author
 
 **Rossiel Carranza**
