@@ -12,4 +12,23 @@ describe('Gameboard', () => {
     Gameboard.displayBoard().fill('x');
     expect(Gameboard.changeBoard('x', 0)).toBe(false);
   });
+
+  test('It returns the gameboard', () => {
+    const fakeBoard = Array(9).fill('x');
+    expect(Gameboard.displayBoard()).toEqual(fakeBoard);
+  });
+
+  test('It returns the first player if is the winner', () => {
+    expect(Gameboard.checkWinner([first, second], 'x')).toBe(first);
+  });
+
+  test('It returns the player who won if there is a winner', () => {
+    Gameboard.displayBoard().fill('o');
+    expect(Gameboard.checkWinner([first, second], 'o')).toBe(second);
+  });
+
+  test('It returns false if there isn\'t a winner', () => {
+    Gameboard.displayBoard().fill('');
+    expect(Gameboard.checkWinner([first, second], 'x')).toBe(false);
+  });
 });
