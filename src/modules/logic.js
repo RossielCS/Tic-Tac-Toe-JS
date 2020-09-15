@@ -50,13 +50,6 @@ const Gameboard = (() => {
     displayBoard() {
       return gameboard;
     },
-    clearBoard() {
-      gameboard.fill('');
-      const board = document.querySelectorAll('.board-cell');
-      for (let i = 0; i < gameboard.length; i += 1) {
-        board[i].style.backgroundImage = 'none';
-      }
-    },
     checkWinner(playersList, piece) {
       const winningK = Object.keys(winningCombinations);
       for (let i = 0; i < winningK.length; i += 1) {
@@ -84,10 +77,10 @@ const Player = (name, piece, score = 0) => {
   };
 };
 
-function createPlayers(player1, player2, game) {
+const createPlayers = (player1, player2, game) => {
   const first = Player(player1, 'x');
   const second = Player(player2, 'o');
   game.addPlayers(first, second);
-}
+};
 
 export { GameManager, Gameboard, createPlayers };

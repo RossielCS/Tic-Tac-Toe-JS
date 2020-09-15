@@ -4,11 +4,11 @@
 Is a game for two players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner.
 
 ## Screenshot
-<img src="assets\images\tic-tac-toe00.png" alt="screenshot"/>
-<img src="assets\images\tic-tac-toe01.png" alt="screenshot"/>
-<img src="assets\images\tic-tac-toe02.png" alt="screenshot"/>
-<img src="assets\images\tic-tac-toe03.png" alt="screenshot"/>
-<img src="assets\images\tic-tac-toe04.png" alt="screenshot"/>
+<img src="src\assets\images\tic-tac-toe00.png" alt="screenshot"/>
+<img src="src\assets\images\tic-tac-toe01.png" alt="screenshot"/>
+<img src="src\assets\images\tic-tac-toe02.png" alt="screenshot"/>
+<img src="src\assets\images\tic-tac-toe03.png" alt="screenshot"/>
+<img src="src\assets\images\tic-tac-toe04.png" alt="screenshot"/>
 
 ## Live Demo
 

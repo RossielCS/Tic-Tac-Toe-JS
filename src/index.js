@@ -5,7 +5,7 @@ import {
 } from './modules/dom';
 
 addButtonStart();
-addButtonRestart(Gameboard, GameManager);
+addButtonRestart(GameManager);
 addPlaceMove(Gameboard, GameManager);
 cancelButton();
 submitButton(GameManager);

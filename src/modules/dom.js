@@ -1,4 +1,15 @@
-import { createPlayers } from './logic';
+import { Gameboard, createPlayers } from './logic';
+import playerOneImg from '../assets/images/player1.png';
+import playerTwoImg from '../assets/images/player2.png';
+
+const clearBoard = () => {
+  const gameboard = Gameboard.displayBoard();
+  gameboard.fill('');
+  const board = document.querySelectorAll('.board-cell');
+  for (let i = 0; i < gameboard.length; i += 1) {
+    board[i].style.backgroundImage = 'none';
+  }
+};
 
 const clearInputs = () => {
   const textValues = document.querySelectorAll('.values');
@@ -22,19 +33,19 @@ const displayStatus = (players) => {
 
 const displayTurn = (game) => {
   const player = game.getTurn(...game.getPlayers());
-  document.getElementsByClassName('player-turn-content')[0].innerHTML = `${player.getName()} is your turn`;
+  document.getElementsByClassName('player-turn-content')[0].innerHTML = `${player.getName()} it's your turn`;
 };
 
 const render = (gameboard) => {
   const board = document.querySelectorAll('.board-cell');
   for (let i = 0; i < gameboard.length; i += 1) {
     if (gameboard[i] === 'x') {
-      board[i].style.backgroundImage = "url('assets/images/player1.png')";
+      board[i].style.backgroundImage = `url('${playerOneImg}')`;
       board[i].style.backgroundRepeat = 'no-repeat';
       board[i].style.backgroundPosition = 'center';
     }
     if (gameboard[i] === 'o') {
-      board[i].style.backgroundImage = "url('assets/images/player2.png')";
+      board[i].style.backgroundImage = `url('${playerTwoImg}')`;
       board[i].style.backgroundRepeat = 'no-repeat';
       board[i].style.backgroundPosition = 'center';
     }
@@ -49,10 +60,10 @@ const addButtonStart = () => {
   });
 };
 
-const addButtonRestart = (gameboard, gamemanager) => {
+const addButtonRestart = (gamemanager) => {
   const btn = document.getElementById('restart-button');
   btn.addEventListener('click', () => {
-    gameboard.clearBoard();
+    clearBoard();
     gamemanager.restartTurn();
     displayTurn(gamemanager);
   });
@@ -76,7 +87,7 @@ const addPlaceMove = (gameboard, gamemanager) => {
           document.getElementsByClassName('winner-content')[0].innerHTML = `${winner.getName()} has won!`;
           // eslint-disable-next-line no-undef
           $('.winner').modal('show');
-          gameboard.clearBoard();
+          clearBoard();
           winner.updateScore();
           displayStatus(players);
           gamemanager.restartTurn();
@@ -86,7 +97,7 @@ const addPlaceMove = (gameboard, gamemanager) => {
           if (!turnsLeft) {
             // eslint-disable-next-line no-undef
             $('.end-game').modal('show');
-            gameboard.clearBoard();
+            clearBoard();
             gamemanager.restartTurn();
             displayTurn(gamemanager);
           }
