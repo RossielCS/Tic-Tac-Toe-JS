@@ -2,7 +2,7 @@
   "name": "cls",
   "version": "1.0.0",
   "description": "> In this project, I build a web app called 'Tic Tac Toe' based on the paper-and-pencil [game](https://en.wikipedia.org/wiki/Tic-tac-toe) of the same name.   \r Is a game for two players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner.",
-  "main": "index.js",
+  "private": true,
   "dependencies": {
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
@@ -15,10 +15,13 @@
   },
   "devDependencies": {
     "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
-    "test": "nodemon ./assets/js/main.js"
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --mode development --open"
   },
   "repository": {
     "type": "git",
