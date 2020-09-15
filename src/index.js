@@ -1,3 +1,5 @@
+import './assets/stylesheets/style.scss';
+
 const GameManager = (() => {
   let turnX = true;
   const playersList = Array(2);
