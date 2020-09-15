@@ -2,13 +2,15 @@ const GameManager = (() => {
   let turnX = true;
   const playersList = Array(2);
   return {
-    changeTurn(player1, player2) {
+    changeTurn() {
       turnX = !turnX;
-      const player = turnX ? player2 : player1;
-      return player.getPiece();
+      return turnX;
+      // const player = turnX ? player2 : player1;
+      // return player.getPiece();
     },
     restartTurn() {
       turnX = true;
+      return turnX;
     },
     endGame(gameboard) {
       const checked = !gameboard.some(x => x === '');
@@ -83,4 +85,6 @@ const createPlayers = (player1, player2, game) => {
   game.addPlayers(first, second);
 };
 
-export { GameManager, Gameboard, createPlayers };
+export {
+  GameManager, Gameboard, Player, createPlayers,
+};

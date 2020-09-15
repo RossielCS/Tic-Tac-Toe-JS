@@ -79,7 +79,7 @@ const addPlaceMove = (gameboard, gamemanager) => {
       const change = gameboard.changeBoard(piece, e.target.id);
       if (change) {
         render(gameboard.displayBoard());
-        gamemanager.changeTurn(...players);
+        gamemanager.changeTurn();
         displayTurn(gamemanager);
         const winner = gameboard.checkWinner(players, piece);
         const turnsLeft = gameboard.displayBoard().filter(x => x === '').length;
