@@ -44,7 +44,10 @@ To run the project:
 
 - Clone the repository with Git.
 - Open it with your IDE.
-- Follow the instructions. 
+- Install the dependencies.  
+`npm install`
+- Run the website.   
+`npm run start`
 
 ## :gem:  Features
 * The user can add the players' names.
