@@ -12,7 +12,7 @@ Is a game for two players, X and O, who take turns marking the spaces in a 3×3 
 
 ## Live Demo
 
-You can try it [here](https://rossielcs.github.io/Tic-Tac-Toe-JS/).
+You can try it [here](https://rossielcs-tic-tac-toe-js.netlify.app/).
 
 ## :hammer:  Built With
 
@@ -26,7 +26,6 @@ You can try it [here](https://rossielcs.github.io/Tic-Tac-Toe-JS/).
 - JavaScript,
 - Semantic-Ui,
 - Visual Studio Code
-
 
 ## :computer: Getting Started
 
@@ -65,7 +64,6 @@ To run the project:
 
 - To run the tests.   
 `npm run test`
-
 
 ## :woman:  Author
 
