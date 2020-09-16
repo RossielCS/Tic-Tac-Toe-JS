@@ -1,6 +1,6 @@
 # Tic-Tac-Toe-JS
 
-> In this project, I build a web app called 'Tic Tac Toe' based on the paper-and-pencil [game](https://en.wikipedia.org/wiki/Tic-tac-toe) of the same name.   
+> In this project, I built a web app called 'Tic Tac Toe' based on the paper-and-pencil [game](https://en.wikipedia.org/wiki/Tic-tac-toe) of the same name.   
 Is a game for two players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner.
 
 ## Screenshot
